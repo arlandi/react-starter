@@ -11,7 +11,7 @@
  - `public`: directory for static files served with express
  - `server`: express server with server side rendering of the react app
  - `shared`:
-  - `components`: the react component library
-  - `redux`: redux [ducks](https://github.com/erikras/ducks-modular-redux)
-  - `scss`: stylesheets
+   - `components`: the react component library
+   - `redux`: redux [ducks](https://github.com/erikras/ducks-modular-redux)
+   - `scss`: stylesheets
  - `webpack`: webpack config files
