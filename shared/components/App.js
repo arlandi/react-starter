@@ -1,12 +1,17 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import Header from './Header';
+import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
+import NotFound from './NotFound';
 
 const App = () => (
   <div>
-    <Header />
-    <Route exact path="/" component={Home} />
+    <Switch>
+      { /* Homepage */ }
+      <Route exact path="/" component={Home} />
+
+      { /* 404 */ }
+      <Route component={NotFound} />
+    </Switch>
   </div>
 );
 

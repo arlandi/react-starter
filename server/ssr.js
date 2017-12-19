@@ -38,6 +38,8 @@ router.get('/', (req, res) => {
     });
     res.end();
   } else {
+
+    // Generate the html response
     const html = renderToStaticMarkup(
       <HTML
         bodyString={renderToStaticMarkup(app)}
@@ -45,7 +47,10 @@ router.get('/', (req, res) => {
       />
     );
 
-    res.status(200).send( `<!DOCTYPE html>${ html }` );
+    // Set 404 header if render context contains a "missed" match
+    // 404 page will be rendered by the app
+    // Otherwise send a 200 OK status
+    res.status(context.missed ? 404 : 200).send( `<!DOCTYPE html>${ html }` );
   }
 });
 
