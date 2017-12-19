@@ -10,7 +10,7 @@ const app = express();
 app.use('/', express.static('public'));
 
 // In dev env, use webpack dev middleware to serve our js files
-if (app.get('env') === 'development') {
+if (process.env.NODE_ENV === 'development') {
   const compiler = webpack(webpackConfig);
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,

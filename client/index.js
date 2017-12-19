@@ -26,6 +26,7 @@ const render = (Component) => {
 
 render(App);
 
+// Hot Reload
 if (module.hot) {
   module.hot.accept('../shared/components/App', () => {
     const nextApp = require('../shared/components/App').default;
