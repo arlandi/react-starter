@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import api from './api';
+import movies from './movies';
 
 const rootReducer = combineReducers({
-  api,
+  movies,
 });
 
 export default rootReducer;

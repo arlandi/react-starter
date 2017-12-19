@@ -1,7 +1,9 @@
 import React from 'react';
 
 const Header = () => (
-  <h1>Header hello</h1>
+  <header className="shadow">
+    <a href="/"><h2>Movie App</h2></a>
+  </header>
 );
 
 export default Header;
