@@ -4,11 +4,8 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  context: path.join(__dirname, '../server'),
   devtool: 'source-map',
-  entry: [
-    './routes/index.js',
-  ],
+  entry: path.join(__dirname, '../server/index.js'),
   target: 'node',
   output: {
     path: path.join(__dirname, '../server/bin'),
@@ -23,7 +20,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['es2015', 'stage-1'],
+            presets: ['react', 'env', 'stage-1'],
           },
         },
       },
@@ -35,7 +32,7 @@ module.exports = {
             options: {
               outputPath: 'images/',
               emitFile: false,
-            }  
+            }
           }
         ]
       },

@@ -4,16 +4,12 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  context: path.join(__dirname, '../client'),
   devtool: 'source-map',
-  entry: [
-    './src/index.js',
-    './res/scss/main.scss',
-  ],
+  entry: path.join(__dirname, '../client/index.js'),
   output: {
-    path: path.join(__dirname, '../server/public'),
-    filename: './js/index.js',
-    publicPath: '/',
+    path: path.join(__dirname, '../public/dist/'),
+    publicPath: '/dist/',
+    filename: 'main.js',
   },
   module: {
     rules: [{
@@ -22,7 +18,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['react', 'es2015', 'stage-1'],
+            presets: ['react', 'env', 'stage-1'],
           },
         },
       },
@@ -53,6 +49,6 @@ module.exports = {
     new UglifyJSPlugin({
       sourceMap: true
     }),
-    new ExtractTextPlugin('css/main.css'),
+    new ExtractTextPlugin('main.css'),
   ],
 };

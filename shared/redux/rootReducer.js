@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import list from './list';
+import api from './api';
 
 const rootReducer = combineReducers({
-  list, // shorthand for lists: lists
+  api,
 });
 
 export default rootReducer;
