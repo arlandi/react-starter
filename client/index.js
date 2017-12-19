@@ -8,9 +8,11 @@ import App from '../shared/components/App';
 
 import styles from '../shared/scss/main.scss';
 
+// Create store from the server rendered state
 const initialState = window.__INITIAL_STATE__;
 const store = createStore(reducers, initialState);
 
+// Use React 16's hydrate function to match client side rendering
 const render = (Component) => {
   hydrate(
     <Provider store={store}>

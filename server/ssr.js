@@ -12,9 +12,14 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
 
+  // Create redux store
   const store = createStore(reducers);
+
+  // Context object for StaticRouter that allows us to
+  // query for the results of the render
   const context = {};
 
+  // The react application
   const app = (
     <Provider store={store}>
       <StaticRouter
@@ -26,6 +31,7 @@ router.get('/', (req, res) => {
     </Provider>
   );
 
+  // Do redirect if router context contains a URL
   if (context.url) {
     res.writeHead(301, {
       Location: context.url,
