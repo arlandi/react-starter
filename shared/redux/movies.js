@@ -4,9 +4,11 @@ import request from 'superagent';
 const GET_MOVIES = 'GET_MOVIES';
 
 // Variables
-const initialState = [];
 const authToken    = '3b502b3f-b1ff-4128-bd99-626e74836d9c';
 const baseEndpoint = 'https://interview.zocdoc.com/api/1/FEE/';
+const initialState = {
+  movies: [],
+};
 
 // The reducer
 export default function reducer(state = initialState, action = {}) {
@@ -68,10 +70,20 @@ export function getMoviesByRank(startRankIndex, numMovies) {
       .query({authToken, startRankIndex, numMovies})
       .end((err, res) => {
         if (res && res.body) {
-          dispatch( {
-            type: GET_MOVIES,
-            movies: res.body,
-          } );
+          const movieIds = res.body.map(movie => movie.Id);
+          return _requestMoviesById(movieIds)
+            .end((err, res) => {
+              if (res && res.body) {
+                const movies = res.body.map((movie, index) => {
+                  movie.Rank = index + 1;
+                  return movie;
+                });
+                dispatch({
+                  type: GET_MOVIES,
+                  movies,
+                });
+              }
+            });
         }
       });
   };
@@ -90,16 +102,21 @@ export function getMoviesById(movieIds) {
 
   // Return redux thunk
   return function(dispatch) {
-    return request
-      .get(`${baseEndpoint}MovieDetails`)
-      .query({authToken, movieIds})
+    return _requestMoviesById(movieIds)
       .end((err, res) => {
         if (res && res.body) {
-          dispatch( {
+          dispatch({
             type: GET_MOVIES,
             movies: res.body,
-          } );
+          });
         }
       });
   };
+}
+
+// Internal functions
+function _requestMoviesById(movieIds) {
+  return request
+    .get(`${baseEndpoint}MovieDetails`)
+    .query({authToken, movieIds});
 }

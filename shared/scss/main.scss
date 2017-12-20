@@ -13,23 +13,6 @@ body {
   padding: 24px;
 }
 
-.button {
-  background: transparent;
-  color: #00234B;
-  cursor: pointer;
-  display: block;
-  border: 1px solid #00234B;
-  padding: 12px 20px;
-  border-radius: 0;
-  margin: 16px auto;
-  outline: none;
-
-  &:hover {
-    background-color: #00234B;
-    color: white;
-  }
-}
-
 img {
   width: 100%;
 }
@@ -69,6 +52,34 @@ a {
   text-align: center;
 }
 
+// Buttons
+.button {
+  background: transparent;
+  color: #00234B;
+  cursor: pointer;
+  display: block;
+  border: 1px solid #00234B;
+  padding: 12px 20px;
+  border-radius: 0;
+  margin: 16px auto;
+  outline: none;
+
+  &:hover {
+    background-color: #00234B;
+    color: white;
+  }
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin: 16px auto;
+
+  .button {
+    margin: 0 5px;
+  }
+}
+
 // Forms
 input {
   outline: none;
@@ -95,7 +106,7 @@ header {
   background-color: #fff;
   border-radius: 2px;
   list-style-type: none;
-  max-width: 900px;
+  max-width: 960px;
   padding: 0;
   margin: 0 auto;
 }
@@ -145,6 +156,8 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  max-width: 960px;
+  margin: 0 auto;
 
   .movie-card {
     @extend .card;
@@ -171,9 +184,15 @@ header {
 .movie-page__card {
   display: flex;
   flex-wrap: wrap;
+  max-width: 960px;
+  margin: 0 auto;
 
   @media (min-width: 768px) {
     flex-wrap: nowrap;
+  }
+
+  img {
+    height: 100%;
   }
 
   .movie-page__body {

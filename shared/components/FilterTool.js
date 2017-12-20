@@ -21,6 +21,19 @@ import {
   {setKeywordFilter, setGenresFilter, setActorsFilter}
 )
 export default class Home extends React.Component {
+  componentWillMount() {
+    const {
+      setKeywordFilter,
+      setGenresFilter,
+      setActorsFilter,
+    } = this.props;
+
+    // Reset all filters
+    setKeywordFilter('');
+    setGenresFilter('');
+    setActorsFilter('');
+  }
+
   render() {
     const {
       movies,

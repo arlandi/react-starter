@@ -1,16 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getMoviesByRank, getAllMovies } from '../redux/movies';
 import { getFilteredMovies } from '../selectors';
 import FilterTool from './FilterTool';
 import MovieListitem from './MovieListitem';
 import MovieCard from './MovieCard';
 
-@connect(state => ({
-  movies: getFilteredMovies(state)
-}))
+@connect(
+  state => ({
+    movies: getFilteredMovies(state),
+    totalMovies: state.movies.movies.length,
+  }),
+  {getMoviesByRank, getAllMovies}
+)
 export default class Home extends React.Component {
   state = {
     layoutOption: 'Grid',
+  }
+
+  constructor(props) {
+    super(props);
+
+    if (props.totalMovies < 10) {
+      props.getMoviesByRank(1,10);
+    }
   }
 
   switchLayout = () => {
@@ -19,24 +32,22 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { movies } = this.props;
+    const { movies, getAllMovies } = this.props;
     const { layoutOption } = this.state;
-
-    // Dont render until we have movies data
-    if (!movies) {
-      return null;
-    }
 
     return (
       <div className='page'>
-        <h1 className='headline'>Top Rated Movies</h1>
+        <h1 className='headline'>{`Top ${movies.length} Movies`}</h1>
         <FilterTool />
-        <button className='button' onClick={this.switchLayout}>Switch to {layoutOption === 'List' ? 'Grid' : 'List'} View</button>
+        <div className='buttons-container'>
+          <button className='button' onClick={this.switchLayout}>Switch to {layoutOption === 'List' ? 'Grid' : 'List'} View</button>
+          <button className='button' onClick={getAllMovies}>Show All Movies</button>
+        </div>
 
         { layoutOption === 'List' &&
           <ul className='list shadow'>
             { movies.map((movie, index) => {
-              return <MovieListitem key={movie.Id} rank={index+1} movie={movie} />
+              return <MovieListitem key={movie.Id} movie={movie} />
             }) }
           </ul>
         }
@@ -44,7 +55,7 @@ export default class Home extends React.Component {
         { layoutOption === 'Grid' &&
           <div className='cards-container'>
           { movies.map((movie, index) => {
-            return <MovieCard key={movie.Id} rank={index+1} movie={movie} />
+            return <MovieCard key={movie.Id} movie={movie} />
           })}
           </div>
         }
