@@ -21,6 +21,11 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['react', 'env', 'stage-1'],
+            plugins: [
+              'transform-object-rest-spread',
+              'transform-class-properties',
+              'transform-decorators-legacy',
+            ],
           },
         },
       },

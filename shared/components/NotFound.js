@@ -5,5 +5,9 @@ export default function NotFound({staticContext}) {
     staticContext.missed = true;
   }
 
-  return (<div>404. These are not the droids you're looking for!</div>);
+  return (
+    <div className='page'>
+      <h1>404. These are not the droids you're looking for!</h1>
+    </div>
+  );
 }

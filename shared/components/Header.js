@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => (
   <header className="shadow">
-    <a href="/"><h2>Movie App</h2></a>
+    <Link to="/"><h2>Movie App</h2></Link>
   </header>
 );
 

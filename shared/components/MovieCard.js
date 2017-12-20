@@ -1,15 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function MovieCard(props) {
+export default function MovieCard({rank, movie}) {
   return (
-    <div className='movie-card shadow'>
-      <a href="/movie/1234/">
+    <div className='movie-card'>
+      <Link to={`/movie/${movie.Id}`}>
         <img src='//placehold.it/345x200' />
         <div className='movie-card__body'>
-          <h3>This is the movie titleeasdfadf</h3>
-          <p>This is the movie descriptionasdfasd</p>
+          <h3>{`${rank}. ${movie.Name}`}</h3>
+          <p><b>Director:</b> {`${movie.Director}`}</p>
+          <p><b>Duration:</b> {`${movie.Duration}`}</p>
+          <p>{`${movie.Description}`}</p>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }

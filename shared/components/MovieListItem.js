@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function MovieListitem({rank, movie}) {
   return (
-    <a href="/movie/1234">
+    <Link to={`/movie/${movie.Id}`}>
       <li className='list-item'>
         <div className='list-item__rank'>{rank}</div>
         <div className='list-item__body'>
@@ -10,6 +11,6 @@ export default function MovieListitem({rank, movie}) {
           <p>{movie.Duration}</p>
         </div>
       </li>
-    </a>
+    </Link>
   );
 }

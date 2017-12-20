@@ -1,19 +1,37 @@
 @import './normalize';
+@import '~react-select/dist/react-select.css';
 
 // Base & Layout
 body {
+  background-color: #F3F3F4;
   color: #00234B;
   font-size: 16px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
-#app {
-  background-color: #F3F3F4;
-  min-height: 100vh;
-}
-
 .page {
   padding: 24px;
+}
+
+.button {
+  background: transparent;
+  color: #00234B;
+  cursor: pointer;
+  display: block;
+  border: 1px solid #00234B;
+  padding: 12px 20px;
+  border-radius: 0;
+  margin: 16px auto;
+  outline: none;
+
+  &:hover {
+    background-color: #00234B;
+    color: white;
+  }
+}
+
+img {
+  width: 100%;
 }
 
 // Typography
@@ -21,17 +39,24 @@ h1, h2, h3, p {
   margin: 0;
 }
 
-h1, h2 {
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2 {
   font-weight: 500;
 }
 
 h3 {
-  font-weight: 400;
   font-size: 1.4rem;
+  font-weight: 400;
 }
 
 p {
+  font-size: 0.8rem;
   font-weight: 300;
+  margin-bottom: 4px;
 }
 
 a {
@@ -40,8 +65,19 @@ a {
 }
 
 .headline {
-  font-size: 2rem;
   margin-bottom: 16px;
+  text-align: center;
+}
+
+// Forms
+input {
+  outline: none;
+  padding: 12px;
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 // Header
@@ -61,6 +97,7 @@ header {
   list-style-type: none;
   max-width: 900px;
   padding: 0;
+  margin: 0 auto;
 }
 
 .list-item {
@@ -77,6 +114,18 @@ header {
 .list-item__rank {
   font-size: 2rem;
   margin-right: 12px;
+  text-align: center;
+  width: 40px;
+}
+
+// Filter Tool
+.filter-tool {
+  margin-bottom: 16px;
+
+  .Select {
+    margin: 8px auto;
+    max-width: 600px;
+  }
 }
 
 // Helper classes
@@ -86,8 +135,61 @@ header {
 
 .card {
   @extend .shadow;
-
   background-color: #fff;
   border-radius: 2px;
   padding: 24px;
+}
+
+// Cards
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  .movie-card {
+    @extend .card;
+    margin-bottom: 16px;
+    padding: 0;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: 30%;
+    }
+
+    &__body {
+      padding: 12px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+// Movie Page Card
+.movie-page__card {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (min-width: 768px) {
+    flex-wrap: nowrap;
+  }
+
+  .movie-page__body {
+    padding-left: 20px;
+    padding-top: 12px;
+
+    p {
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+    }
+
+    .button {
+      display: inline-block;
+    }
+  }
 }
